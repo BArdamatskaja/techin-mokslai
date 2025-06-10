@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="lt">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KMI skaičiuoklė</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- <script
+      defer;
+      src = "script.js"></script>
+    </script> -->
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="col-4 mt-5">
+        <form id="form-one">
+          <div class="form-group">
+            <label for="height">Įveskite savo ūgį</label>
+            <input
+              type="number"
+              class="form-control"
+              id="height"
+              name="height"
+              placeholder="Įveskite savo ūgį centimetrais"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="weight">Įveskite savo svorį</label>
+            <input
+              type="number"
+              class="form-control"
+              id="weight"
+              name="weight"
+              placeholder="Svoris kg"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Skaičiuoti KMI
+          </button>
+        </form>
+
+        <p id="kmi"></p>
+        <script>
+          let form = document.getElementById("form-one");
+
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const weight = document.getElementById("weight").value;
+            const height = document.getElementById("height").value;
+            const heightM = height / 100;
+
+            if ((weight <= 0, height <= 0)) {
+              alert("Įrašykite teisinga ūgį ir/ar svorį!");
+              return;
+            }
+            let KMIvalue = weight / (heightM * heightM);
+            const paragraph = document.getElementById("kmi");
+            paragraph.textContent = `Jūsų KMI yra ${KMIvalue.toFixed(2)}`;
+          });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

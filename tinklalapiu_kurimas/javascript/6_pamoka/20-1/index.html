@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Javascript</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div id="div1">
+        <p id="p1">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
+          deleniti ea dolor modi, quae eaque doloremque odit, voluptatibus
+          blanditiis ad pariatur repellat distinctio maxime iusto quis. Nisi
+          quaerat quo eius.
+        </p>
+      </div>
+      <button onclick="myFunc(event)">Ok</button>
+      <script>
+        const titleName = document.createElement("h1");
+        const titleText = document.createTextNode("Pavadinimas");
+        titleName.appendChild(titleText);
+
+        function myFunc(event) {
+          const element = document.getElementById("div1");
+          const child = document.getElementById("p1");
+          element.insertBefore(titleName, child);
+        }
+      </script>
+    </main>
+    <footer></footer>
+  </body>
+</html>
