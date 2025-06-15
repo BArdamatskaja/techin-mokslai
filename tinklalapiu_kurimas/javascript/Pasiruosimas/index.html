@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+<style>
+  .btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;}
+  .btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  }
+  * {
+      box-sizing: border-box;
+  }
+  .form-group {
+  margin-bottom: 1rem;}
+  label {
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+</style>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <h2>Skaičių intervalo vidurkis</h2>
+      <p id="vidurkis"></p>
+      <h2>Žodžių generatorius</h2>
+      <p id="generatorius"></p>
+      <h2>Skaičių spėliojimo žaidimas</h2>
+      <p id="speliojimas">
+        <button onclick="guessGame()">Žodžių spėliojimo žaidimas!</button>
+      </p>
+      <h2 id="vardai">Darbas su vardu masyvu</h2>
+      <p id="karolis"></p>
+      <p id="domas"></p>
+      <p id="naujas"></p>
+      <p id="abecele"></p>
+      <h2>KMI skaičiuoklė</h2>
+        <div class="container">
+      <div class="col-4 mt-5">
+        <form id="form-one">
+          <div class="form-group">
+            <label for="height">Įveskite savo ūgį</label>
+            <input
+              type="number"
+              class="form-control"
+              id="height"
+              name="height"
+              placeholder="Įveskite savo ūgį centimetrais"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="weight">Įveskite savo svorį</label>
+            <input
+              type="number"
+              class="form-control"
+              id="weight"
+              name="weight"
+              placeholder="Svoris kg"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Skaičiuoti KMI
+          </button>
+        </form>
+      <p id="kmi"></p>
+      <script>
+        function calculateAVG() {
+          let sum = 0;
+          let count = 0;
+          for (let i = 1; i <= 50; i++) {
+            if (i % 2 === 0) {
+              sum += i;
+              count++;
+            }
+          }
+          let avg = sum / count;
+          document.getElementById("vidurkis").textContent =
+            "Lyginių skaičių intervalo vidurkis: " + avg;
+        }
+        calculateAVG();
+
+        //// 2 uzduotis
+
+        const randomWords = [
+          "Javascript ",
+          "kodas ",
+          "kompiuteris ",
+          "programa ",
+          "duomenys ",
+        ];
+        function wordGenerator(reiksme, kiekis) {
+          let words = [];
+          for (let i = 0; i < kiekis; i++) {
+            let rezultatas = Math.floor(Math.random() * reiksme.length);
+            words.push(reiksme[rezultatas]);
+          }
+          return words;
+        }
+        let generator = wordGenerator(randomWords, 3);
+        document.getElementById("generatorius").textContent =
+          "Atsitiktiniai žodžiai iš masyvo: " + generator;
+
+        /// 3 uzduotis
+
+        function guessGame() {
+          let random = [];
+          for (let i = 1; i <= 10; i++) {
+            let randomCalculate = Math.floor(Math.random() * 11);
+            random.push(randomCalculate);
+          }
+          let guess = prompt("Ar norite spėti skaičių?");
+          if (guess === "Taip") {
+            let yes = parseInt(prompt("Įveskite skaičių nuo 1 iki 10:"));
+            if (yes === random.includes(yes)) {
+              alert("Sveikinu, atspėjei!");
+            } else {
+              alert("Buvai arti, bandyk dar kartą!");
+            }
+          } else if (guess === "Ne") {
+            alert("Tikiuosi persigalvosi!");
+          } else {
+            alert("Atsakymą rašyti iš didžiosios raidės - Taip arba Ne!");
+          }
+          document.getElementById("speliojimas");
+        }
+
+        /// 4 uzduotis
+
+        const vardai = ["Jonas", "Domas", "Tomas", "Rasa", "Gintarė"];
+        function addKarolis() {
+          vardai.unshift("Karolis");
+          document.getElementById("karolis").textContent =
+            "Pridėtas vardas - Karolis --> " + vardai;
+        }
+        addKarolis();
+
+        function removeDomas() {
+          vardai.splice(2, 1);
+          document.getElementById("domas").textContent =
+            "Pašalintas Domo vardas --> " + vardai;
+        }
+        removeDomas();
+
+        function newArr() {
+          let co = "&Co";
+          const renewedVardai = vardai.map((v) => v + co);
+          document.getElementById("naujas").textContent =
+            "Atnaujintas masyvas --> " + renewedVardai;
+        }
+        newArr();
+
+        function abc() {
+          vardai.sort();
+          document.getElementById("abecele").textContent =
+            "Išrikiuotas masyvas --> " + vardai;
+        }
+        abc();
+
+        // 5 uzduotis
+
+         let form = document.getElementById("form-one");
+
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const weight = document.getElementById("weight").value;
+            const height = document.getElementById("height").value;
+            const heightM = height / 100;
+
+            if ((weight <= 0, height <= 0)) {
+              alert("Įrašykite teisinga ūgį ir/ar svorį!");
+              return;
+            }
+            let KMIvalue = weight / (heightM * heightM);
+            const paragraph = document.getElementById("kmi");
+            paragraph.textContent = `Jūsų KMI yra ${KMIvalue.toFixed(2)}`;
+          });
+      </script>
+    </main>
+  </body>
+</html>
